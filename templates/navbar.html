@@ -1,0 +1,27 @@
+{{define "navbar"}}
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">Student Management</a>
+
+        <div class="d-flex align-items-center gap-2">
+            <a href="/api-demo" class="btn btn-outline-light btn-sm">API Demo</a>
+
+            {{if .IsAdmin}}
+            <a href="/users" class="btn btn-outline-light btn-sm">Users</a>
+            {{end}}
+
+            <span class="text-white small">
+                {{.Username}}
+                <span class="badge bg-secondary">{{.Role}}</span>
+            </span>
+
+            <form method="POST" action="/logout">
+                <input type="hidden" name="csrf" value="{{.CSRF}}">
+                <button type="submit" class="btn btn-danger btn-sm">
+                    Logout
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>
+{{end}}
